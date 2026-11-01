@@ -1,3 +1,18 @@
+
+// Настройки визуального редактора (локальное сохранение в этом браузере).
+try {
+ const d=JSON.parse(localStorage.getItem('rq_design')||'{}');
+ if(d.heroTitle) document.querySelector('#heroTitle').innerHTML=d.heroTitle;
+ if(d.heroSubtitle) document.querySelector('#heroSubtitle').textContent=d.heroSubtitle;
+ if(d.centerTitle) document.querySelector('#centerTitle').textContent=d.centerTitle;
+ if(d.aboutTitle) document.querySelector('#aboutTitle').innerHTML=d.aboutTitle;
+ if(d.footerText) document.querySelector('#footerText').textContent=d.footerText;
+ if(d.bgColor) document.documentElement.style.setProperty('--bg',d.bgColor);
+ if(d.panelColor) document.documentElement.style.setProperty('--panel',d.panelColor);
+ if(d.heroImage) document.querySelector('.hero').style.backgroundImage=`linear-gradient(90deg,#100b09e8,#100b0955),url("${d.heroImage}")`;
+ if(d.ownersImage) document.querySelector('#ownersImage').src=d.ownersImage;
+ if(d.heroHeight) document.querySelector('.hero').style.minHeight=d.heroHeight+'px';
+} catch(e) { console.warn('Не удалось применить оформление',e); }
 const defaults=[
 {id:'q1',title:'Не отвечай после полуночи',genre:'ПСИХОЛОГИЧЕСКИЙ ХОРРОР',desc:'Незнакомый номер пишет тебе каждую ночь. Сначала это кажется розыгрышем. Потом он называет то, чего знать не может.',time:'30–45 МИН',age:'16+',level:'СРЕДНИЙ'},
 {id:'q2',title:'Дом на окраине',genre:'МИСТИКА',desc:'Ты случайно попадаешь в общий чат жильцов заброшенного дома. Один из участников утверждает, что видит тебя.',time:'40–60 МИН',age:'16+',level:'СЛОЖНЫЙ'},
