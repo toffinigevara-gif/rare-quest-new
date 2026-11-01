@@ -1,81 +1,18 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#17110e">
-  <title>RARE QUEST — Страшные переписки</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17110e"><title>RARE QUEST — Страшные переписки</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="grain"></div>
-  <header class="topbar">
-    <a class="brand" href="#top"><span class="eye">◉</span> RARE QUEST</a>
-    <nav><a href="#quests">Квесты</a><a href="#about">О проекте</a><a href="#owners">Владелицы</a></nav>
-    <a class="tg-small" href="https://t.me/rare_quest" target="_blank" rel="noreferrer">Telegram ↗</a>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="hero-image" role="img" aria-label="Обложка «Страшные переписки»"></div>
-      <div class="hero-fade"></div>
-      <div class="hero-title">
-        <p class="eyebrow">RARE QUEST PRESENTS</p>
-        <h1 class="reveal">СТРАШНЫЕ<br>ПЕРЕПИСКИ</h1>
-        <p class="hero-sub">Ужас это то, для чего ты здесь.</p>
-        <a class="button" href="#quests">Выбрать квест <span>↘</span></a>
-      </div>
-      <p class="hero-whisper">Две девушки. Две жизни.<br>И бесконечное количество страшных историй.</p>
-      <div class="eye-mark" aria-hidden="true">◉</div>
-    </section>
-
-    <section class="intro" id="about">
-      <p class="eyebrow">НЕ ПРОСТО ИСТОРИИ</p>
-      <h2>За каждым сообщением<br>стоит <em>кто-то настоящий.</em></h2>
-      <p>Ты выбираешь историю, знакомишься с её героями и оказываешься внутри переписки. Тебе отвечают реальные ведущие RARE QUEST — здесь никто не подменяет человека искусственным интеллектом.</p>
-    </section>
-
-    <section class="quests-section" id="quests">
-      <div class="section-heading">
-        <div><p class="eyebrow">ВЫБЕРИ СВОЮ ИСТОРИЮ</p><h2>Квесты</h2></div>
-        <span class="counter">01 — 07</span>
-      </div>
-      <div class="quest-grid" id="questGrid"></div>
-    </section>
-
-    <section class="owners" id="owners">
-      <div class="owners-photo" role="img" aria-label="Фотография двух владелиц RARE QUEST"></div>
-      <div class="owners-shade"></div>
-      <div class="owners-content">
-        <p class="eyebrow">ЗА RARE QUEST</p>
-        <h2>Две девушки.<br>Один мир<br><em>беспокойных историй.</em></h2>
-        <p>Мы создаём истории, в которые хочется верить. И иногда — из которых хочется выйти.</p>
-        <div class="socials">
-          <a href="https://t.me/rare_quest" target="_blank" rel="noreferrer">Наш Telegram ↗</a>
-          <a href="https://www.tiktok.com/@rare_quest0?_r=1&_t=ZT-99wxyDLaFiQ" target="_blank" rel="noreferrer">Наш TikTok ↗</a>
-        </div>
-      </div>
-      <span class="owners-stamp">RARE<br>QUEST</span>
-    </section>
-  </main>
-
-  <footer><span>RARE QUEST ©</span><span>Истории остаются с тобой.</span><a href="#top">Наверх ↑</a></footer>
-
-  <div class="modal" id="questModal" aria-hidden="true">
-    <div class="modal-backdrop" data-close></div>
-    <article class="quest-detail">
-      <button class="close" aria-label="Закрыть" data-close>×</button>
-      <div class="detail-cover" id="detailCover"></div>
-      <div class="detail-body">
-        <p class="eyebrow" id="detailGenre"></p>
-        <h2 id="detailTitle"></h2>
-        <p id="detailDescription"></p>
-        <div class="detail-meta" id="detailMeta"></div>
-        <button class="button start-button" id="startQuest">Начать квест <span>↗</span></button>
-        <p class="detail-note">После старта с тобой свяжется живой ведущий. Сейчас это демонстрационный макет: подключение чата и регистрации будет следующим этапом.</p>
-      </div>
-    </article>
-  </div>
-  <script src="app.js"></script>
-</body>
-</html>
+<header class="topbar"><a class="brand" href="#top">RARE<span>QUEST</span></a><nav><a href="#quests">Квесты</a><a href="#about">О нас</a><a href="admin.html">Управление</a></nav></header>
+<main>
+<section class="hero" id="top"><div class="hero-shade"></div><div class="hero-copy"><p class="eyebrow">ИСТОРИИ, КОТОРЫЕ НЕ ДАЮТ СПАТЬ</p><h1>СТРАШНЫЕ<br><em>ПЕРЕПИСКИ</em></h1><p>Ужас — это то, для чего ты здесь.</p><a class="button" href="#quests">Выбрать квест</a></div><div class="scrollhint">ЛИСТАЙ НИЖЕ ↓</div></section>
+<section class="intro"><p class="eyebrow">ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ</p><h2>Некоторые сообщения<br>лучше <em>не открывать.</em></h2><p>Выбирай историю. Читай внимательно. И помни: иногда за экраном действительно кто-то есть.</p></section>
+<section class="quests section" id="quests"><div class="section-head"><div><p class="eyebrow">КОЛЛЕКЦИЯ ИСТОРИЙ</p><h2>Выбери свой <em>кошмар</em></h2></div><span class="counter" id="questCount">03 ИСТОРИИ</span></div><div class="quest-grid" id="questGrid"></div></section>
+<section class="about section" id="about"><div class="about-photo"><img src="assets/owners.png" alt="Создательницы RARE QUEST"></div><div class="about-copy"><p class="eyebrow">ПО ТУ СТОРОНУ ЭКРАНА</p><h2>Две девушки.<br>Две жизни.<br><em>Бесконечность историй.</em></h2><p>Мы создаём страшные переписки, в которых ты становишься частью сюжета.</p><div class="socials"><a href="https://t.me/rare_quest" target="_blank" rel="noreferrer">TELEGRAM ↗</a><a href="https://www.tiktok.com/@rare_quest0?_r=1&_t=ZT-99wxyDLaFiQ" target="_blank" rel="noreferrer">TIKTOK ↗</a></div></div></section>
+</main><footer>Две девушки. Две жизни. И бесконечное количество страшных историй.<small>RARE QUEST ©</small></footer>
+<div class="modal" id="questModal" aria-hidden="true"><div class="modal-panel"><button class="close" id="closeModal">✕</button><p class="eyebrow" id="modalGenre"></p><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="meta" id="modalMeta"></div><button class="button" id="startQuest">Начать квест</button><p class="fineprint">Демо-режим: интерактивная переписка и регистрация пока не подключены.</p></div></div>
+<script src="app.js"></script>
+</body></html>

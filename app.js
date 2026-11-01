@@ -1,27 +1,9 @@
-const quests = [
- {title:"Падение",genre:"Психологический хоррор",desc:"Обычный вечер оборачивается цепочкой сообщений, которые лучше было не открывать. Чем дальше ты заходишь, тем сложнее понять, кто говорит правду.",time:"30–45 минут",age:"16+",level:"Средняя"},
- {title:"Поезд мёртвых",genre:"Мистика · расследование",desc:"Ты получаешь странное сообщение от пассажира поезда, которого, кажется, не существует. Попробуй разобраться, пока состав не прибыл на конечную.",time:"40–60 минут",age:"16+",level:"Сложная"},
- {title:"Кто ты?",genre:"Переписка с незнакомцем",desc:"Незнакомец знает о тебе слишком много. Но откуда? И почему он так настойчиво просит не оборачиваться?",time:"25–40 минут",age:"16+",level:"Средняя"},
- {title:"Поклонник",genre:"Реалистичная страшная история",desc:"Сначала это кажется милым вниманием. Потом подарки становятся страннее, а сообщения — всё более личными.",time:"35–50 минут",age:"16+",level:"Средняя"},
- {title:"Последнее желание",genre:"Детектив · несколько концовок",desc:"У тебя есть несколько зацепок и слишком мало времени. Каждое решение меняет ход истории.",time:"45–70 минут",age:"16+",level:"Сложная"},
- {title:"Безликое Проклятие",genre:"Мистика · сериал",desc:"В старом чате появляется участник без имени и фотографии. Он пишет так, будто давно тебя знает.",time:"50–70 минут",age:"16+",level:"Сложная"},
- {title:"Сладость или Гадость?",genre:"Хоррор · несколько персонажей",desc:"Ночная прогулка превращается в игру, правила которой никто не объяснил. Не всем удастся дойти до конца.",time:"30–45 минут",age:"14+",level:"Средняя"}
-];
-const grid=document.querySelector("#questGrid");
-quests.forEach((q,i)=>{
- const card=document.createElement("button");card.className="quest-card";
- card.innerHTML=`<div class="quest-art"></div><div class="quest-info"><small>${String(i+1).padStart(2,"0")} / ${q.genre}</small><h3>${q.title}</h3><p>${q.desc.slice(0,92)}…</p></div><span class="card-arrow">↗</span>`;
- card.addEventListener("click",()=>openQuest(q));grid.appendChild(card);
-});
-const modal=document.querySelector("#questModal");
-function openQuest(q){
- document.querySelector("#detailGenre").textContent=q.genre;
- document.querySelector("#detailTitle").textContent=q.title;
- document.querySelector("#detailDescription").textContent=q.desc;
- document.querySelector("#detailMeta").innerHTML=`<span>◷ ${q.time}</span><span>Возраст: ${q.age}</span><span>Сложность: ${q.level}</span>`;
- modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
-}
-function closeQuest(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.style.overflow=""}
-document.querySelectorAll("[data-close]").forEach(el=>el.addEventListener("click",closeQuest));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeQuest()});
-document.querySelector("#startQuest").addEventListener("click",()=>alert("Это демонстрация оформления. Чтобы начать настоящий квест, нужно подключить регистрацию, базу данных и чат с живым ведущим."));
+const defaults=[
+{id:'q1',title:'Не отвечай после полуночи',genre:'ПСИХОЛОГИЧЕСКИЙ ХОРРОР',desc:'Незнакомый номер пишет тебе каждую ночь. Сначала это кажется розыгрышем. Потом он называет то, чего знать не может.',time:'30–45 МИН',age:'16+',level:'СРЕДНИЙ'},
+{id:'q2',title:'Дом на окраине',genre:'МИСТИКА',desc:'Ты случайно попадаешь в общий чат жильцов заброшенного дома. Один из участников утверждает, что видит тебя.',time:'40–60 МИН',age:'16+',level:'СЛОЖНЫЙ'},
+{id:'q3',title:'Последнее голосовое',genre:'РЕАЛИСТИЧНЫЙ УЖАС',desc:'Подруга присылает голосовое сообщение, но утверждает, что телефон был выключен уже три дня.',time:'25–35 МИН',age:'14+',level:'ЛЁГКИЙ'}];
+const getQuests=()=>{try{return JSON.parse(localStorage.getItem('rq_quests'))||defaults}catch{return defaults}};
+function render(){const qs=getQuests();document.querySelector('#questCount').textContent=String(qs.length).padStart(2,'0')+' ИСТОРИЙ';document.querySelector('#questGrid').innerHTML=qs.map(q=>`<article class="quest-card"><span class="tag">${esc(q.genre||'ХОРРОР')}</span><h3>${esc(q.title)}</h3><p>${esc(q.desc)}</p><div class="card-bottom"><span>${esc(q.time||'—')} · ${esc(q.age||'16+')}</span><button data-id="${esc(q.id)}">ОТКРЫТЬ ↗</button></div></article>`).join('');document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>openQuest(b.dataset.id))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function openQuest(id){const q=getQuests().find(x=>x.id===id);if(!q)return;document.querySelector('#modalGenre').textContent=q.genre||'ХОРРОР';document.querySelector('#modalTitle').textContent=q.title;document.querySelector('#modalDesc').textContent=q.desc;document.querySelector('#modalMeta').textContent=[q.time,q.age,q.level].filter(Boolean).join(' · ');document.querySelector('#questModal').classList.add('open')}
+document.querySelector('#closeModal').onclick=()=>document.querySelector('#questModal').classList.remove('open');document.querySelector('#questModal').onclick=e=>{if(e.target.id==='questModal')e.currentTarget.classList.remove('open')};document.querySelector('#startQuest').onclick=()=>alert('Скоро здесь появится интерактивная переписка. Сейчас это демонстрационная версия сайта.');render();
