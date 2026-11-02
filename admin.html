@@ -1,1 +1,78 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RARE QUEST — Управление</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css"></head><body class="admin"><header class="topbar"><a class="brand" href="index.html">RARE<span>QUEST</span></a><nav><a href="index.html">На сайт ↗</a></nav></header><main class="admin-wrap"><p class="eyebrow">ПАНЕЛЬ УПРАВЛЕНИЯ · ДЕМО</p><h1>Управление <em>квестами</em></h1><p class="admin-note">Добавляй, редактируй и удаляй карточки. Изменения сохраняются в браузере этого устройства и пока не синхронизируются между владельцами.</p><section class="admin-box"><h2 id="formTitle">Новый квест</h2><form id="questForm"><input type="hidden" id="qid"><label>Название<input id="title" required maxlength="80" placeholder="Название истории"></label><label>Жанр<input id="genre" placeholder="МИСТИКА / ХОРРОР"></label><label>Описание<textarea id="desc" required rows="4" placeholder="Короткое описание квеста"></textarea></label><div class="two"><label>Длительность<input id="time" placeholder="30–45 МИН"></label><label>Возраст<input id="age" placeholder="16+"></label></div><label>Сложность<input id="level" placeholder="СРЕДНИЙ"></label><div class="actions"><button class="button" type="submit">Сохранить квест</button><button class="plain" type="button" id="reset">Очистить</button></div></form></section><section class="admin-box"><h2>Опубликованные квесты</h2><div id="adminList"></div></section><section class="admin-box"><h2>Редактор оформления — следующий этап</h2><p>Отдельные настройки обложки, центрального блока и нижней секции, загрузка изображений, шрифты и эффекты пока не подключены.</p><a class="plain" href="index.html">Посмотреть сайт ↗</a></section></main><script src="admin.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RARE QUEST — Админ-панель</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <main class="admin-container">
+    <h1>RARE QUEST</h1>
+    <p>ПАНЕЛЬ УПРАВЛЕНИЯ</p>
+
+    <section id="loginSection">
+      <h2>Вход администратора</h2>
+
+      <form id="loginForm">
+        <label for="email">Электронная почта</label>
+        <input id="email" type="email" placeholder="Твоя почта" required>
+
+        <label for="password">Пароль</label>
+        <input id="password" type="password" placeholder="Пароль" required>
+
+        <button type="submit">ВОЙТИ</button>
+      </form>
+
+      <p id="loginMessage"></p>
+    </section>
+
+    <section id="adminSection" hidden>
+      <h2>Управление историями</h2>
+
+      <button id="logoutButton" type="button">ВЫЙТИ</button>
+
+      <form id="questForm">
+        <input id="questId" type="hidden">
+
+        <label for="title">Название истории</label>
+        <input id="title" type="text" required>
+
+        <label for="genre">Жанр</label>
+        <input id="genre" type="text" required>
+
+        <label for="description">Описание</label>
+        <textarea id="description" required></textarea>
+
+        <label for="duration">Продолжительность</label>
+        <input id="duration" type="text" placeholder="30–45 МИН">
+
+        <label for="ageLimit">Возрастное ограничение</label>
+        <input id="ageLimit" type="text" placeholder="16+">
+
+        <label for="difficulty">Сложность</label>
+        <input id="difficulty" type="text" placeholder="СРЕДНИЙ">
+
+        <label for="sortOrder">Порядок отображения</label>
+        <input id="sortOrder" type="number" value="0">
+
+        <label>
+          <input id="isPublished" type="checkbox" checked>
+          Опубликовать историю
+        </label>
+
+        <button type="submit">СОХРАНИТЬ ИСТОРИЮ</button>
+        <button id="cancelEdit" type="button">ОЧИСТИТЬ ФОРМУ</button>
+      </form>
+
+      <p id="adminMessage"></p>
+
+      <h2>Список историй</h2>
+      <div id="questList"></div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
