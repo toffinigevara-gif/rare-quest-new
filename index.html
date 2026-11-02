@@ -1,18 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17110e"><title>RARE QUEST — Страшные переписки</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RARE QUEST — Страшные переписки</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
-<header class="topbar"><a class="brand" href="#top">RARE<span>QUEST</span></a><nav><a href="#quests">Квесты</a><a href="#about">О нас</a><a href="admin.html">Квесты</a><a href="editor.html">Дизайн</a></nav></header>
-<main>
-<section class="hero" id="top"><div class="hero-shade"></div><div class="hero-copy"><p class="eyebrow">ИСТОРИИ, КОТОРЫЕ НЕ ДАЮТ СПАТЬ</p><h1 id="heroTitle">СТРАШНЫЕ<br><em>ПЕРЕПИСКИ</em></h1><p id="heroSubtitle">Ужас — это то, для чего ты здесь.</p><a class="button" href="#quests">Выбрать квест</a></div><div class="scrollhint">ЛИСТАЙ НИЖЕ ↓</div></section>
-<section class="intro"><p class="eyebrow">ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ</p><h2>Некоторые сообщения<br>лучше <em>не открывать.</em></h2><p>Выбирай историю. Читай внимательно. И помни: иногда за экраном действительно кто-то есть.</p></section>
-<section class="quests section" id="quests"><div class="section-head"><div><p class="eyebrow">КОЛЛЕКЦИЯ ИСТОРИЙ</p><h2 id="centerTitle">Выбери свой <em>кошмар</em></h2></div><span class="counter" id="questCount">03 ИСТОРИИ</span></div><div class="quest-grid" id="questGrid"></div></section>
-<section class="about section" id="about"><div class="about-photo"><img id="ownersImage" src="assets/owners.png" alt="Создательницы RARE QUEST"></div><div class="about-copy"><p class="eyebrow">ПО ТУ СТОРОНУ ЭКРАНА</p><h2 id="aboutTitle">Две девушки.<br>Две жизни.<br><em>Бесконечность историй.</em></h2><p>Мы создаём страшные переписки, в которых ты становишься частью сюжета.</p><div class="socials"><a href="https://t.me/rare_quest" target="_blank" rel="noreferrer">TELEGRAM ↗</a><a href="https://www.tiktok.com/@rare_quest0?_r=1&_t=ZT-99wxyDLaFiQ" target="_blank" rel="noreferrer">TIKTOK ↗</a></div></div></section>
-</main><footer><span id="footerText">Две девушки. Две жизни. И бесконечное количество страшных историй.</span><small>RARE QUEST ©</small></footer>
-<div class="modal" id="questModal" aria-hidden="true"><div class="modal-panel"><button class="close" id="closeModal">✕</button><p class="eyebrow" id="modalGenre"></p><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="meta" id="modalMeta"></div><button class="button" id="startQuest">Начать квест</button><p class="fineprint">Демо-режим: интерактивная переписка и регистрация пока не подключены.</p></div></div>
-<script src="app.js"></script>
-</body></html>
+
+  <header class="header">
+    <a href="index.html" class="logo">RARE QUEST</a>
+
+    <nav>
+      <a href="#quests">ИСТОРИИ</a>
+      <a href="#about">О ПРОЕКТЕ</a>
+      <a href="#owners">АВТОРЫ</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <span class="tag">ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ</span>
+
+        <h1 id="heroTitle">НЕ ВСЕ СООБЩЕНИЯ СТОИТ ОТКРЫВАТЬ</h1>
+
+        <p id="heroSubtitle">
+          Страшные переписки, тайны и истории, в которых ты становишься главным героем.
+        </p>
+
+        <a href="#quests" class="main-button">ВЫБРАТЬ ИСТОРИЮ ↗</a>
+      </div>
+    </section>
+
+    <section class="quests-section" id="quests">
+      <div class="section-heading">
+        <div>
+          <span class="tag">ПОГРУЗИСЬ В ИСТОРИЮ</span>
+          <h2 id="centerTitle">ВЫБЕРИ СВОЙ КОШМАР</h2>
+        </div>
+
+        <span id="questCount">ЗАГРУЗКА...</span>
+      </div>
+
+      <div id="questGrid" class="quest-grid"></div>
+    </section>
+
+    <section class="about-section" id="about">
+      <span class="tag">О ПРОЕКТЕ</span>
+      <h2 id="aboutTitle">ЭТО БОЛЬШЕ, ЧЕМ ПРОСТО ПЕРЕПИСКА</h2>
+
+      <p>
+        RARE QUEST — место, где каждая история превращается в отдельное приключение.
+        Читай сообщения, принимай решения и узнай, чем закончится твой выбор.
+      </p>
+    </section>
+
+    <section class="owners-section" id="owners">
+      <span class="tag">КОМАНДА ПРОЕКТА</span>
+      <h2>СОЗДАТЕЛИ RARE QUEST</h2>
+
+      <img id="ownersImage" src="" alt="Команда RARE QUEST">
+
+      <p>
+        За каждой историей стоят люди, которые создают этот мир.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p id="footerText">RARE QUEST © 2026</p>
+
+    <div class="social-links">
+      <a href="https://t.me/" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TIKTOK</a>
+    </div>
+  </footer>
+
+  <div class="modal" id="questModal">
+    <div class="modal-content">
+      <button id="closeModal" type="button">✕</button>
+
+      <span id="modalGenre" class="tag"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <p id="modalMeta"></p>
+
+      <button id="startQuest" type="button" class="main-button">
+        НАЧАТЬ ИСТОРИЮ ↗
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
